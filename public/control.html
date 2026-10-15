@@ -14,10 +14,10 @@
     <span class="pill">tier <b id="tier-pill">1</b>/20</span>
     <label class="row hint"><input type="checkbox" id="sound"> sound on show</label>
     <button id="undo" title="Undo last action">Undo</button>
-    <input id="key" type="password" placeholder="control key" autocomplete="off" style="width:150px;padding:8px 10px;">
+    <input id="key" type="password" placeholder="control key" aria-label="Control key" autocomplete="off" style="width:150px;padding:8px 10px;">
     <a href="/show" target="_blank">Open show screen</a>
   </div>
-  <div id="toast"></div>
+  <div id="toast" role="status"></div>
 
   <main>
     <div class="col">
@@ -64,10 +64,10 @@
             <span class="hint">Run a Twitch poll, then type the votes or percentages:</span>
           </div>
           <div class="row">
-            <label>A <input class="pct" id="poll-0" type="number" min="0" value="0"></label>
-            <label>B <input class="pct" id="poll-1" type="number" min="0" value="0"></label>
-            <label>C <input class="pct" id="poll-2" type="number" min="0" value="0"></label>
-            <label>D <input class="pct" id="poll-3" type="number" min="0" value="0"></label>
+            <label>A <input class="pct" id="poll-0" type="number" min="0" value="0" aria-label="Votes for A"></label>
+            <label>B <input class="pct" id="poll-1" type="number" min="0" value="0" aria-label="Votes for B"></label>
+            <label>C <input class="pct" id="poll-2" type="number" min="0" value="0" aria-label="Votes for C"></label>
+            <label>D <input class="pct" id="poll-3" type="number" min="0" value="0" aria-label="Votes for D"></label>
             <button id="poll-show" class="primary">Show results</button>
             <button id="ll-close-chat">Close poll</button>
           </div>
@@ -100,7 +100,7 @@
         </div>
         <div class="row" style="margin-top:10px;">
           <button id="ladder-save" class="primary">Save ladder</button>
-          <label class="row hint">Jump to tier <select id="tier-select"></select></label>
+          <label class="row hint" for="tier-select">Jump to tier</label><select id="tier-select" aria-label="Jump to tier"></select>
           <button id="tier-set">Go</button>
         </div>
       </section>

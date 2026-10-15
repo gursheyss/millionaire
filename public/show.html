@@ -8,7 +8,7 @@
 </head>
 <body>
   <div id="stage">
-    <div id="lifelines">
+    <div id="lifelines" aria-label="Lifelines">
       <div class="lifeline" data-ll="fifty"><img src="/img/fifty.png" alt="50:50"></div>
       <div class="lifeline" data-ll="chat"><img src="/img/chat.png" alt="Ask the Chat"></div>
       <div class="lifeline" data-ll="phone"><img src="/img/phone.png" alt="Phone a Friend"></div>
@@ -24,10 +24,10 @@
       <div class="rail" id="rail-a"></div>
       <div class="rail" id="rail-b"></div>
       <div id="question" class="hex"><div class="in"><span id="question-text"></span></div></div>
-      <div id="a0" class="hex answer"><div class="in"><span class="letter">A:</span><span class="text"></span></div></div>
-      <div id="a1" class="hex answer"><div class="in"><span class="letter">B:</span><span class="text"></span></div></div>
-      <div id="a2" class="hex answer"><div class="in"><span class="letter">C:</span><span class="text"></span></div></div>
-      <div id="a3" class="hex answer"><div class="in"><span class="letter">D:</span><span class="text"></span></div></div>
+      <div id="a0" class="hex answer"><div class="in"><span class="letter">A:</span><span class="text"></span><span class="mark" aria-hidden="true"></span></div></div>
+      <div id="a1" class="hex answer"><div class="in"><span class="letter">B:</span><span class="text"></span><span class="mark" aria-hidden="true"></span></div></div>
+      <div id="a2" class="hex answer"><div class="in"><span class="letter">C:</span><span class="text"></span><span class="mark" aria-hidden="true"></span></div></div>
+      <div id="a3" class="hex answer"><div class="in"><span class="letter">D:</span><span class="text"></span><span class="mark" aria-hidden="true"></span></div></div>
     </div>
 
     <div id="idle" class="overlay">
@@ -59,10 +59,10 @@
       <div class="who"></div>
     </div>
 
-    <div id="ladder"></div>
+    <div id="ladder" aria-label="Prize ladder"></div>
   </div>
 
-  <div id="audio-gate">Click to enable audio</div>
+  <button id="audio-gate" type="button">Click to enable audio</button>
 
   <audio id="snd-bed" loop></audio>
   <audio id="snd-fx"></audio>

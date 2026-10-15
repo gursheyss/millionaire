@@ -74,7 +74,11 @@
       if (state.phase === 'wrong' && state.selected === i) b.classList.add('wrong');
       b.innerHTML = '<span class="ltr">' + LETTERS[i] + '</span><span class="txt"></span><span class="mark"></span>';
       b.querySelector('.txt').textContent = a;
-      b.querySelector('.mark').textContent = i === q.correct ? 'correct' : (i >= state.revealed ? 'hidden' : '');
+      var mark = i === q.correct ? 'correct' : (i >= state.revealed ? 'hidden' : '');
+      if (state.phase === 'locked' && state.selected === i) mark = 'LOCKED';
+      if ((state.phase === 'correct' || state.phase === 'wrong') && i === q.correct) mark = '\u2713 correct';
+      if (state.phase === 'wrong' && state.selected === i) mark = '\u2717 wrong';
+      b.querySelector('.mark').textContent = mark;
       b.disabled = !(state.phase === 'answers' || state.phase === 'locked') || state.eliminated[i];
       b.onclick = function () { act('select', { index: i }); };
       wrap.appendChild(b);
@@ -83,7 +87,9 @@
 
   function renderButtons() {
     var p = state.phase;
-    $('#phase-text').textContent = p.toUpperCase() + (state.contestant ? '  -  ' + state.contestant : '');
+    $('#phase-text').innerHTML = '<span class="phase"></span>';
+    $('#phase-text .phase').textContent = p;
+    if (state.contestant) $('#phase-text').append(' \u2014 ' + state.contestant);
     $('#phase-hint').textContent = PHASE_HINT[p] || '';
     $('#tier-pill').textContent = state.tier + 1;
     $('#sound').checked = state.sound;
@@ -115,7 +121,7 @@
     tb.innerHTML = '';
     state.ladder.forEach(function (t, i) {
       var tr = document.createElement('tr');
-      tr.innerHTML = '<td>' + (i + 1) + '</td><td><input type="text" class="label"></td><td>' + (i === 19 ? '<input type="text" class="note">' : '') + '</td><td><input type="checkbox" class="ms"></td>';
+      tr.innerHTML = '<td>' + (i + 1) + '</td><td><input type="text" class="label" aria-label="Prize for tier ' + (i + 1) + '"></td><td>' + (i === 19 ? '<input type="text" class="note" aria-label="Note for top tier">' : '') + '</td><td><input type="checkbox" class="ms" aria-label="Tier ' + (i + 1) + ' is a safe haven"></td>';
       tr.querySelector('.label').value = t.label;
       if (i === 19) tr.querySelector('.note').value = t.note || '';
       tr.querySelector('.ms').checked = Boolean(t.milestone);
@@ -144,9 +150,10 @@
     questions.forEach(function (q, i) {
       var tr = document.createElement('tr');
       tr.className = (i >= 20 ? 'spare' : '') + (i === state.tier ? ' current' : '');
-      var cells = '<td class="idx">' + (i >= 20 ? 'S' + (i - 19) : i + 1) + '</td><td><input type="text" class="qt"></td>';
-      for (var k = 0; k < 4; k++) cells += '<td><label class="row" style="gap:4px;flex-wrap:nowrap;"><input type="radio" name="c' + i + '" value="' + k + '"><input type="text" class="a' + k + '"></label></td>';
-      cells += '<td class="ctl"><button class="up" title="Move up">&uarr;</button> <button class="down" title="Move down">&darr;</button> <button class="del" title="Delete">&times;</button></td>';
+      var rowName = i >= 20 ? 'spare ' + (i - 19) : 'question ' + (i + 1);
+      var cells = '<td class="idx">' + (i >= 20 ? 'S' + (i - 19) : i + 1) + '</td><td><input type="text" class="qt" aria-label="Text of ' + rowName + '"></td>';
+      for (var k = 0; k < 4; k++) cells += '<td><span class="row" style="gap:4px;flex-wrap:nowrap;"><input type="radio" name="c' + i + '" value="' + k + '" aria-label="' + LETTERS[k] + ' is correct for ' + rowName + '"><input type="text" class="a' + k + '" aria-label="Answer ' + LETTERS[k] + ' of ' + rowName + '"></span></td>';
+      cells += '<td class="ctl"><button class="up" type="button" aria-label="Move ' + rowName + ' up">&uarr;</button> <button class="down" type="button" aria-label="Move ' + rowName + ' down">&darr;</button> <button class="del" type="button" aria-label="Delete ' + rowName + '">&times;</button></td>';
       tr.innerHTML = cells;
       tr.querySelector('.qt').value = q.text;
       for (var j = 0; j < 4; j++) tr.querySelector('.a' + j).value = q.answers[j];
