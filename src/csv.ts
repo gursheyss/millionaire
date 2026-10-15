@@ -1,8 +1,8 @@
-'use strict';
+import type { Question } from './game';
 
-function parseCsv(text) {
-  const rows = [];
-  let row = [];
+export function parseCsv(text: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
   let cell = '';
   let quoted = false;
   for (let i = 0; i < text.length; i++) {
@@ -26,8 +26,8 @@ function parseCsv(text) {
 
 const LETTER = /^\s*([A-Da-d])\s*[\)\.:\-]\s*/;
 
-function rowsToQuestions(rows) {
-  const questions = [];
+export function rowsToQuestions(rows: string[][]): Question[] {
+  const questions: Question[] = [];
   for (const raw of rows) {
     const cells = raw.map((c) => String(c).trim()).filter(Boolean);
     if (cells.length < 5) continue;
@@ -49,11 +49,10 @@ function rowsToQuestions(rows) {
   return questions;
 }
 
-function sheetCsvUrl(url) {
+export function sheetCsvUrl(url: unknown): string | null {
   const m = String(url).match(/docs\.google\.com\/spreadsheets\/d\/([A-Za-z0-9_-]+)/);
   if (!m) return null;
   const gid = (String(url).match(/[#&?]gid=(\d+)/) || [])[1] || '0';
   return 'https://docs.google.com/spreadsheets/d/' + m[1] + '/export?format=csv&gid=' + gid;
 }
 
-module.exports = { parseCsv, rowsToQuestions, sheetCsvUrl };

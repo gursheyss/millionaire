@@ -1,15 +1,13 @@
-'use strict';
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { Game, initialState, TIERS } from '../src/game.ts';
+import { parseCsv, rowsToQuestions, sheetCsvUrl } from '../src/csv.ts';
 
-const test = require('node:test');
-const assert = require('node:assert/strict');
-const { Game, initialState, TIERS } = require('../game');
-const { parseCsv, rowsToQuestions, sheetCsvUrl } = require('../csv');
-
-function questions(n) {
+function questions(n: number) {
   return Array.from({ length: n }, (_, i) => ({ text: 'Q' + (i + 1), answers: ['a', 'b', 'c', 'd'], correct: i % 4 }));
 }
 
-function setupLocked(game, index) {
+function setupLocked(game: Game, index: number) {
   game.dispatch('seat', { name: 'viewer1' });
   game.dispatch('showQuestion');
   game.dispatch('revealAll');

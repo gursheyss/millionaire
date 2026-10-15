@@ -2,28 +2,36 @@
 
 "Who Wants to Be a Millionaire" overlay and controller for a Twitch stream. Chat members get pulled into the Discord stage one at a time; a right answer sends them out and climbs the ladder, a wrong answer greys out their pick and they stay until they get it right. 20 questions to the top.
 
-Two screens, one tiny Node server:
+Two screens, one [Void](https://void.cloud) app on Cloudflare:
 
-- `/show` – the 1920x1080 overlay the streamer adds to OBS as a Browser Source. Plain HTML/CSS/JS, display only, plays the show sound cues.
-- `/control` – the controller's page, a React + Tailwind app in `control/` built on [beautiful-ui](https://github.com/slev12397/beautiful-ui) primitives (Button, ValuePill, EntityChip, GlideMenu, TaskRows, LoadingState). Seats contestants, drives the question flow, runs lifelines, edits questions and the prize ladder, and shows a live preview of the overlay. Light and dark.
+- `/show` – the 1920x1080 overlay the streamer adds to OBS as a Browser Source. Plain HTML/CSS/JS in `public/`, display only, plays the show sound cues.
+- `/control` – the controller's page, a React + Tailwind app (`control.html`, `src/`) built on [beautiful-ui](https://github.com/slev12397/beautiful-ui) primitives (Button, ValuePill, EntityChip, GlideMenu, TaskRows, LoadingState). Seats contestants, drives the question flow, runs lifelines, edits questions and the prize ladder, and shows a live preview of the overlay. Light and dark.
 
-Every control action goes through the server over a WebSocket, so OBS and the controller can be on different machines and a page refresh never loses the game.
+Both pages talk to one WebSocket room (`routes/game.ws.ts`, a Durable Object) that owns the game state, so OBS and the controller can be on different machines, every open screen sees the same thing, and a page refresh or redeploy never loses the game. The pure game rules live in `src/game.ts`.
 
 ## Run it locally
 
 ```
 npm install
-npm run build          # builds the control app into public/control
-CONTROL_KEY=pick-a-password npm start
+echo CONTROL_KEY=pick-a-password > .env
+npm run dev
 ```
 
-Then open http://localhost:3000/control and http://localhost:3000/show. To work on the control app with hot reload, run `npm run dev` inside `control/` and open the Vite URL; it proxies the API and overlay to port 3000.
+Then open http://localhost:3000/control and http://localhost:3000/show. Paste the key into the control page when it asks (the show page never needs it). `npm test` runs the game-rule tests, `npm run typecheck` type-checks everything including the routes.
 
-## Deploy (Render, free tier)
+## Deploy
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/gursheyss/millionaire)
+```
+npx void deploy
+```
 
-Render reads `render.yaml`, generates a random `CONTROL_KEY`, and gives you a URL. Copy the key from the service's Environment tab and paste it into the control page when it asks (the show page never needs it). The free tier spins the service down after 15 minutes of inactivity; open the control page a minute before going live and it stays up for the whole stream. Game state lives in `data/state.json`, which survives restarts but not a redeploy. Railway and Fly work too via the included `Dockerfile`.
+The first run signs you in to Void and provisions the Cloudflare Worker and Durable Object. Set the control key as a secret before going live:
+
+```
+npx void secret put CONTROL_KEY
+```
+
+To deploy straight to your own Cloudflare account instead, run `npx void deploy --backend cloudflare --provision` after `npx wrangler login`; note that Durable Objects need a paid Workers plan there.
 
 ## OBS
 
@@ -32,7 +40,7 @@ Add a Browser Source pointing at `https://<your-host>/show`, 1920x1080. Tick "Co
 ## Flow
 
 1. **Seat contestant**: type their Discord name. The show puts up the name card ("Next contestant").
-2. **Show question** (`Q`), then **Reveal next answer** (`R`) one at a time or **Reveal all** (`A`).
+2. **Show question** (`Q`), then **Reveal one** (`R`) at a time or **Reveal all answers** (`A`).
 3. When they commit, click their answer (or `1`-`4`). It locks orange with the final-answer sting.
 4. **Reveal result** (`Enter`). Correct turns green, wrong turns red and shows the right one.
 5. **Next** (`N`): after a correct answer the contestant leaves and the ladder moves up; after a wrong one the same contestant gets the same question again with that option greyed out.

@@ -1,4 +1,5 @@
 {
+  "extends": "./.void/tsconfig.json",
   "compilerOptions": {
     "target": "ES2022",
     "lib": [
@@ -13,6 +14,7 @@
     "skipLibCheck": true,
     "noEmit": true,
     "isolatedModules": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -24,6 +26,10 @@
     ]
   },
   "include": [
-    "src"
+    "src",
+    "routes",
+    "env.ts",
+    "vite.config.ts",
+    ".void/*.d.ts"
   ]
 }

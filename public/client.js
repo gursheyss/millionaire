@@ -10,7 +10,7 @@
 
     function open() {
       var proto = location.protocol === 'https:' ? 'wss://' : 'ws://';
-      ws = new WebSocket(proto + location.host);
+      ws = new WebSocket(proto + location.host + '/game');
       ws.onopen = function () { retry = 1000; if (handlers.onOpen) handlers.onOpen(); };
       ws.onmessage = function (ev) {
         var msg = JSON.parse(ev.data);

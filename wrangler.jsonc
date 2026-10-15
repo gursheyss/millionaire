@@ -1,0 +1,18 @@
+{
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "MillionaireGameWs",
+        "class_name": "MillionaireGameWs"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "void-ws-v1",
+      "new_sqlite_classes": [
+        "MillionaireGameWs"
+      ]
+    }
+  ]
+}

@@ -34,7 +34,7 @@ export function connect(handlers: Handlers) {
 
   function open() {
     const proto = location.protocol === "https:" ? "wss://" : "ws://";
-    ws = new WebSocket(proto + location.host);
+    ws = new WebSocket(proto + location.host + "/game");
     ws.onopen = () => { retry = 1000; handlers.onOpen(); };
     ws.onmessage = (ev) => {
       const msg = JSON.parse(ev.data);
@@ -65,7 +65,7 @@ export function connect(handlers: Handlers) {
 
 export async function importQuestions(url: string, body: Record<string, string>, key: string): Promise<Question[]> {
   const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json", "x-control-key": key }, body: JSON.stringify(body) });
-  const j = await r.json();
+  const j = (await r.json()) as { error?: string; questions: Question[] };
   if (!r.ok) throw new Error(j.error || r.statusText);
   if (!j.questions.length) throw new Error("No questions found");
   return j.questions;
