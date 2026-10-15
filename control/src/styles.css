@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import "shadow-plugin/unprefixed";
+@custom-variant dark (&:where(.dark, .dark *));
+@import "./foundation.css";
+
+:root {
+  --font-inter: "Inter";
+  --font-mono-face: "JetBrains Mono";
+}
+
+/* Controller-specific: the show overlay preview keeps its 16:9 frame */
+.preview-frame { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; border: 0; transform-origin: top left; pointer-events: none; }
+
+/* Answer tiles carry three live states; each one pairs color with a text mark. */
+.answer-tile[data-state="locked"] { background: var(--orange); color: white; }
+.answer-tile[data-state="correct"] { background: var(--green); color: white; }
+.answer-tile[data-state="wrong"] { background: var(--red); color: white; }
+.answer-tile[data-state="locked"] .answer-letter, .answer-tile[data-state="correct"] .answer-letter, .answer-tile[data-state="wrong"] .answer-letter { color: inherit; }
+.answer-tile[data-state="eliminated"] { opacity: 0.4; text-decoration: line-through; }
+.answer-tile[data-hidden="true"] { border-style: dashed; }
+.answer-tile:disabled:not([data-state="locked"]):not([data-state="correct"]):not([data-state="wrong"]) { opacity: 0.6; }
+@media (prefers-reduced-motion: reduce) { .answer-tile, button { transition-duration: 0s; } }

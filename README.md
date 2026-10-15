@@ -4,8 +4,8 @@
 
 Two screens, one tiny Node server:
 
-- `/show` – the 1920x1080 overlay the streamer adds to OBS as a Browser Source. Display only, plays the show sound cues.
-- `/control` – the controller's page. Seats contestants, drives the question flow, runs lifelines, edits questions and the prize ladder, and shows a live preview of the overlay.
+- `/show` – the 1920x1080 overlay the streamer adds to OBS as a Browser Source. Plain HTML/CSS/JS, display only, plays the show sound cues.
+- `/control` – the controller's page, a React + Tailwind app in `control/` built on [beautiful-ui](https://github.com/slev12397/beautiful-ui) primitives (Button, ValuePill, EntityChip, GlideMenu, TaskRows, LoadingState). Seats contestants, drives the question flow, runs lifelines, edits questions and the prize ladder, and shows a live preview of the overlay. Light and dark.
 
 Every control action goes through the server over a WebSocket, so OBS and the controller can be on different machines and a page refresh never loses the game.
 
@@ -13,10 +13,11 @@ Every control action goes through the server over a WebSocket, so OBS and the co
 
 ```
 npm install
+npm run build          # builds the control app into public/control
 CONTROL_KEY=pick-a-password npm start
 ```
 
-Then open http://localhost:3000/control and http://localhost:3000/show.
+Then open http://localhost:3000/control and http://localhost:3000/show. To work on the control app with hot reload, run `npm run dev` inside `control/` and open the Vite URL; it proxies the API and overlay to port 3000.
 
 ## Deploy (Render, free tier)
 
@@ -45,4 +46,4 @@ The control page imports straight from a Google Sheet shared as "anyone with the
 
 ## Credits
 
-Sound cues and lifeline icons are from [mistermantas/millionaire-js](https://github.com/mistermantas/millionaire-js) (MIT). They are recordings of the show's actual cues, so whether they are safe to put on stream is your call; sound can be turned off from the control page.
+Control-screen components and design tokens are from [beautiful-ui](https://github.com/slev12397/beautiful-ui) (MIT). Sound cues and lifeline icons are from [mistermantas/millionaire-js](https://github.com/mistermantas/millionaire-js) (MIT). They are recordings of the show's actual cues, so whether they are safe to put on stream is your call; sound can be turned off from the control page.

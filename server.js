@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (_req, res) => res.redirect('/control'));
 app.get('/show', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'show.html')));
-app.get('/control', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'control.html')));
+app.get('/control', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'control', 'index.html')));
 
 app.post('/api/import-sheet', async (req, res) => {
   if (CONTROL_KEY && req.get('x-control-key') !== CONTROL_KEY) return res.status(401).json({ error: 'Bad control key' });

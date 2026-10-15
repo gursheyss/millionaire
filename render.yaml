@@ -3,7 +3,7 @@ services:
     name: millionaire
     runtime: node
     plan: free
-    buildCommand: npm ci --omit=dev
+    buildCommand: npm ci --omit=dev && npm run build
     startCommand: npm start
     healthCheckPath: /show
     envVars:
