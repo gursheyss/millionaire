@@ -13,7 +13,7 @@
       var first = !state;
       state = s;
       $('#clients').textContent = msg.clients;
-      if (msg.needsKey && !client.getKey()) askKey();
+      if (msg.needsKey && !client.getKey()) toast('Enter the control key (top right) before using the controls');
       render(first);
     },
   });
@@ -27,14 +27,17 @@
   }
 
   function act(name, payload) {
-    return client.send(name, payload).catch(function (e) { toast(e.message); });
+    return client.send(name, payload).catch(function (e) {
+      $('#key').classList.toggle('bad', /control key/i.test(e.message));
+      toast(e.message);
+    });
   }
 
-  function askKey() {
-    var k = prompt('Control key (set as CONTROL_KEY on the server):', client.getKey());
-    if (k !== null) client.setKey(k.trim());
-  }
-  $('#key-btn').onclick = askKey;
+  $('#key').value = client.getKey();
+  $('#key').addEventListener('input', function () {
+    client.setKey($('#key').value.trim());
+    $('#key').classList.remove('bad');
+  });
 
   function fitPreview() {
     var w = $('#preview-wrap').clientWidth;
