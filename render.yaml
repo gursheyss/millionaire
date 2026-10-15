@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: millionaire
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /show
+    envVars:
+      - key: CONTROL_KEY
+        generateValue: true
+      - key: NODE_VERSION
+        value: "20"

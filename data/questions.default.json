@@ -1,0 +1,222 @@
+[
+  {
+    "text": "What is the capital of France?",
+    "answers": [
+      "Rome",
+      "Madrid",
+      "Paris",
+      "Berlin"
+    ],
+    "correct": 2
+  },
+  {
+    "text": "How many days are there in a leap year?",
+    "answers": [
+      "364",
+      "365",
+      "366",
+      "367"
+    ],
+    "correct": 2
+  },
+  {
+    "text": "What did Yugi spend his FAFSA money on?",
+    "answers": [
+      "Airpods",
+      "Mustang",
+      "Saved it",
+      "Gave to mama2x"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "How many sides does a hexagon have?",
+    "answers": [
+      "Five",
+      "Six",
+      "Seven",
+      "Eight"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Which ocean is the largest on Earth?",
+    "answers": [
+      "Atlantic Ocean",
+      "Indian Ocean",
+      "Arctic Ocean",
+      "Pacific Ocean"
+    ],
+    "correct": 3
+  },
+  {
+    "text": "Who painted the Mona Lisa?",
+    "answers": [
+      "Pablo Picasso",
+      "Leonardo da Vinci",
+      "Vincent van Gogh",
+      "Michelangelo"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "What is the chemical symbol for gold?",
+    "answers": [
+      "Ag",
+      "Gd",
+      "Au",
+      "Go"
+    ],
+    "correct": 2
+  },
+  {
+    "text": "How much money did Yugi2x gift Arii?",
+    "answers": [
+      "$1000",
+      "$100",
+      "$250",
+      "$500"
+    ],
+    "correct": 3
+  },
+  {
+    "text": "Which country gifted the Statue of Liberty to the United States?",
+    "answers": [
+      "France",
+      "Italy",
+      "Spain",
+      "Germany"
+    ],
+    "correct": 0
+  },
+  {
+    "text": "What is the smallest prime number?",
+    "answers": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "correct": 2
+  },
+  {
+    "text": "What does AFK stand for?",
+    "answers": [
+      "Always Following Kai",
+      "Away From Keyboard",
+      "Another Funny Klip",
+      "All Fans Know"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "In which year did the Titanic sink?",
+    "answers": [
+      "1905",
+      "1912",
+      "1918",
+      "1923"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Which element has the atomic number 79?",
+    "answers": [
+      "Silver",
+      "Platinum",
+      "Gold",
+      "Copper"
+    ],
+    "correct": 2
+  },
+  {
+    "text": "What is the longest river in South America?",
+    "answers": [
+      "Paraná River",
+      "Amazon River",
+      "Orinoco River",
+      "São Francisco River"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Who wrote the novel 1984?",
+    "answers": [
+      "Aldous Huxley",
+      "George Orwell",
+      "Ernest Hemingway",
+      "J.R.R. Tolkien"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "What is the capital city of Mongolia?",
+    "answers": [
+      "Tashkent",
+      "Bishkek",
+      "Ulaanbaatar",
+      "Kathmandu"
+    ],
+    "correct": 2
+  },
+  {
+    "text": "Which mathematician is credited with the incompleteness theorems?",
+    "answers": [
+      "Alan Turing",
+      "Kurt Gödel",
+      "Isaac Newton",
+      "René Descartes"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "Which chemical element has the highest melting point of all elements?",
+    "answers": [
+      "Osmium",
+      "Tungsten",
+      "Rhenium",
+      "Tantalum"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "What is the SI unit of electrical capacitance?",
+    "answers": [
+      "Tesla",
+      "Henry",
+      "Farad",
+      "Weber"
+    ],
+    "correct": 2
+  },
+  {
+    "text": "Which civilization developed cuneiform?",
+    "answers": [
+      "Egyptians",
+      "Sumerians",
+      "Romans",
+      "Persians"
+    ],
+    "correct": 1
+  },
+  {
+    "text": "What is the deepest known ocean trench?",
+    "answers": [
+      "Java Trench",
+      "Tonga Trench",
+      "Mariana Trench",
+      "Puerto Rico Trench"
+    ],
+    "correct": 2
+  },
+  {
+    "text": "Which of these moons has the thickest atmosphere?",
+    "answers": [
+      "Europa",
+      "Titan",
+      "Phobos",
+      "Earth's Moon"
+    ],
+    "correct": 1
+  }
+]

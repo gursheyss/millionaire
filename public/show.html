@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Millionaire - Show</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/show.css">
+</head>
+<body>
+  <div id="stage">
+    <div id="lifelines">
+      <div class="lifeline" data-ll="fifty"><img src="/img/fifty.png" alt="50:50"></div>
+      <div class="lifeline" data-ll="chat"><img src="/img/chat.png" alt="Ask the Chat"></div>
+      <div class="lifeline" data-ll="phone"><img src="/img/phone.png" alt="Phone a Friend"></div>
+      <div class="lifeline" data-ll="swap"><img src="/img/swap.png" alt="Swap the Question"></div>
+    </div>
+
+    <div id="contestant" class="hex"><div class="in"><span id="contestant-name"></span></div></div>
+    <div id="playing-for"></div>
+    <div id="winners"></div>
+
+    <div id="board">
+      <div class="rail" id="rail-q"></div>
+      <div class="rail" id="rail-a"></div>
+      <div class="rail" id="rail-b"></div>
+      <div id="question" class="hex"><div class="in"><span id="question-text"></span></div></div>
+      <div id="a0" class="hex answer"><div class="in"><span class="letter">A:</span><span class="text"></span></div></div>
+      <div id="a1" class="hex answer"><div class="in"><span class="letter">B:</span><span class="text"></span></div></div>
+      <div id="a2" class="hex answer"><div class="in"><span class="letter">C:</span><span class="text"></span></div></div>
+      <div id="a3" class="hex answer"><div class="in"><span class="letter">D:</span><span class="text"></span></div></div>
+    </div>
+
+    <div id="idle" class="overlay">
+      <div class="title">WHO WANTS TO BE A<b>MILLIONAIRE</b></div>
+      <div class="sub">Chat Edition</div>
+    </div>
+    <div id="intro" class="overlay">
+      <div class="kicker">Next contestant</div>
+      <div class="name"></div>
+      <div class="for"></div>
+    </div>
+    <div id="poll" class="overlay">
+      <div class="kicker">Ask the Chat</div>
+      <div class="bars">
+        <div class="bar"><div class="pct">0%</div><div class="fill"></div><div class="ltr">A</div></div>
+        <div class="bar"><div class="pct">0%</div><div class="fill"></div><div class="ltr">B</div></div>
+        <div class="bar"><div class="pct">0%</div><div class="fill"></div><div class="ltr">C</div></div>
+        <div class="bar"><div class="pct">0%</div><div class="fill"></div><div class="ltr">D</div></div>
+      </div>
+    </div>
+    <div id="phone" class="overlay">
+      <div class="kicker">Phone a Friend</div>
+      <div class="ring">30</div>
+    </div>
+    <div id="won" class="overlay">
+      <div class="kicker">Millionaire</div>
+      <div class="amount"></div>
+      <div class="note"></div>
+      <div class="who"></div>
+    </div>
+
+    <div id="ladder"></div>
+  </div>
+
+  <div id="audio-gate">Click to enable audio</div>
+
+  <audio id="snd-bed" loop></audio>
+  <audio id="snd-fx"></audio>
+
+  <script src="/client.js"></script>
+  <script src="/show.js"></script>
+</body>
+</html>
