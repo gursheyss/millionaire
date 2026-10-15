@@ -8,15 +8,14 @@
   --font-mono-face: "JetBrains Mono";
 }
 
-/* Controller-specific: the show overlay preview keeps its 16:9 frame */
+/* The overlay preview keeps its 1920x1080 frame and is scaled to the card width. */
 .preview-frame { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; border: 0; transform-origin: top left; pointer-events: none; }
 
-/* Answer tiles carry three live states; each one pairs color with a text mark. */
+/* Answer tiles: each live state pairs a fill with a text mark. */
 .answer-tile[data-state="locked"] { background: var(--orange); color: white; }
 .answer-tile[data-state="correct"] { background: var(--green); color: white; }
 .answer-tile[data-state="wrong"] { background: var(--red); color: white; }
-.answer-tile[data-state="locked"] .answer-letter, .answer-tile[data-state="correct"] .answer-letter, .answer-tile[data-state="wrong"] .answer-letter { color: inherit; }
-.answer-tile[data-state="eliminated"] { opacity: 0.4; text-decoration: line-through; }
-.answer-tile[data-hidden="true"] { border-style: dashed; }
-.answer-tile:disabled:not([data-state="locked"]):not([data-state="correct"]):not([data-state="wrong"]) { opacity: 0.6; }
+.answer-tile[data-state="locked"] .answer-letter, .answer-tile[data-state="correct"] .answer-letter, .answer-tile[data-state="wrong"] .answer-letter { background: rgba(255,255,255,0.18); color: white; box-shadow: none; }
+.answer-tile[data-state="eliminated"] { opacity: 0.4; }
+.answer-tile[data-state="eliminated"] > span:nth-child(2) { text-decoration: line-through; }
 @media (prefers-reduced-motion: reduce) { .answer-tile, button { transition-duration: 0s; } }
