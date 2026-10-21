@@ -22,16 +22,17 @@ Then open http://localhost:3000/control and http://localhost:3000/show. Paste th
 ## Deploy
 
 ```
-npx void deploy
+npx void cloudflare login
+npx void deploy --platform cloudflare
 ```
 
-The first run signs you in to Void and provisions the Cloudflare Worker and Durable Object. Set the control key as a secret before going live:
+The first run provisions the Worker and the Durable Object that holds game state in your Cloudflare account (`void.config.ts` and `void.lock.json` pin the resource names, keep them committed). Set the control key as a secret before going live; it reads the value from stdin or prompts for it:
 
 ```
 npx void secret put CONTROL_KEY
 ```
 
-To deploy straight to your own Cloudflare account instead, run `npx void deploy --backend cloudflare --provision` after `npx wrangler login`; note that Durable Objects need a paid Workers plan there.
+The app is live at https://millionaire.rkwarya.workers.dev.
 
 ## OBS
 

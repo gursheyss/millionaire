@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "source": {
+    "durable_objects": {
+      "bindings": [
+        {
+          "name": "MillionaireGameWs",
+          "class_name": "MillionaireGameWs"
+        }
+      ]
+    },
+    "migrations": [
+      {
+        "tag": "void-ws-v1",
+        "new_sqlite_classes": [
+          "MillionaireGameWs"
+        ]
+      }
+    ]
+  },
+  "resolved": {
+    "durable_objects": {
+      "bindings": [
+        {
+          "name": "MillionaireGameWs",
+          "class_name": "MillionaireGameWs"
+        }
+      ]
+    },
+    "migrations": [
+      {
+        "tag": "void-ws-v1",
+        "new_sqlite_classes": [
+          "MillionaireGameWs"
+        ]
+      }
+    ],
+    "account_id": "f6fedd00eea00c307f5e623d9a1d989b",
+    "name": "millionaire"
+  },
+  "text": "{\n  \"durable_objects\": {\n    \"bindings\": [\n      {\n        \"name\": \"MillionaireGameWs\",\n        \"class_name\": \"MillionaireGameWs\"\n      }\n    ]\n  },\n  \"migrations\": [\n    {\n      \"tag\": \"void-ws-v1\",\n      \"new_sqlite_classes\": [\n        \"MillionaireGameWs\"\n      ]\n    }\n  ],\n  \"account_id\": \"f6fedd00eea00c307f5e623d9a1d989b\",\n  \"name\": \"millionaire\"\n}"
+}
