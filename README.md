@@ -32,7 +32,7 @@ The first run provisions the Worker and the Durable Object that holds game state
 npx void secret put CONTROL_KEY
 ```
 
-The app is live at https://millionaire.rkwarya.workers.dev.
+The app is live at https://millionaire.gursheys.workers.dev.
 
 ## OBS
 
